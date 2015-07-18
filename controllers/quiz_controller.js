@@ -12,13 +12,23 @@ exports.load = function(req, res, next, quizId) {
   ).catch(function(error) { next(error);});
 };
 
-//GET /quizes
+// GET  /quizes?search=texto_a_buscar
 exports.index = function(req, res) {
-  models.Quiz.findAll().then(
-    function(quizes) {
-      res.render('quizes/index', { quizes: quizes});
-    }
-  ).catch(function(error) {next(error);})
+  if(req.query.search !== undefined) {
+    var search = ('%' + req.query.search + '%').replace(/\s/g, '%');
+    models.Quiz.findAll({where: ["lower(pregunta) like ?",search.toLowerCase()], order: 'pregunta ASC'}).then(
+      function(quizes) {
+        res.render('quizes/index', { quizes: quizes});
+      }
+    ).catch(function(error) {next(error);})
+  }
+  else {
+    models.Quiz.findAll().then(
+      function(quizes) {
+        res.render('quizes/index', { quizes: quizes});
+      }
+    ).catch(function(error) {next(error);})
+  }
 };
 
 //GET /quizes/:id
