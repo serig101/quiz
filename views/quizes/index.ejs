@@ -12,10 +12,27 @@
       </td>
     </tr>
   <% } %>
-    <tr><td><a href="/quizes/new"><button type="button">Crear pregunta</button></a></td></tr>
+  <tr><td><a href="/quizes/new"><button type="button">Crear pregunta</button></a></td></tr>
+  <tr>
+    <td>
+        <form method="get" action="/quizes">
+          <select name="tema">
+            <option value="otro" selected>Otro</option>
+            <option value="humanidades">Humanidades</option>
+            <option value="ocio">Ocio</option>
+            <option value="ciencia">Ciencia</option>
+            <option value="tecnologia">Tecnología</option>
+            <input type="submit" value="Buscar tema">
+          </select> <p>
+        </form>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <form method="get" action="/quizes">
+          <input type="text" name="search" placeholder="Buscar pregunta"/>
+          <input type="submit" value="Enviar">
+        </form>
+    </td>
+  </tr>
 </table><p>
-
-<form method="get" action="/quizes">
-  <input type="text" name="search" placeholder="Buscar"/>
-  <input type="submit" value="Enviar">
-</form>
