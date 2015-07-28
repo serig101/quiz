@@ -27,11 +27,11 @@ router.get('/logout', sessioncontroller.destroy); // destruir sesion
 router.get('/quizes', quizcontroller.index);
 router.get('/quizes/:quizId(\\d+)', quizcontroller.show);
 router.get('/quizes/:quizId(\\d+)/answer', quizcontroller.answer);
-router.get('/quizes/new', quizcontroller.new);
-router.post('/quizes/create', quizcontroller.create);
-router.get('/quizes/:quizId(\\d+)/edit', quizcontroller.edit);
-router.put('/quizes/:quizId(\\d+)', quizcontroller.update);
-router.delete('/quizes/:quizId(\\d+)', quizcontroller.destroy);
+router.get('/quizes/new', sessioncontroller.loginRequired, quizcontroller.new);
+router.post('/quizes/create', sessioncontroller.loginRequired, quizcontroller.create);
+router.get('/quizes/:quizId(\\d+)/edit', sessioncontroller.loginRequired, quizcontroller.edit);
+router.put('/quizes/:quizId(\\d+)', sessioncontroller.loginRequired, quizcontroller.update);
+router.delete('/quizes/:quizId(\\d+)', sessioncontroller.loginRequired, quizcontroller.destroy);
 
 // Definicion de rutas de comentarios
 router.get('/quizes/:quizId(\\d+)/comments/new', commentcontroller.new);
