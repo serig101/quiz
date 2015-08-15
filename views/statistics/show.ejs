@@ -1,0 +1,8 @@
+<%
+	for (var i in Object.keys(statistic)) {
+		var field = Object.keys(statistic)[i];
+%>
+  <div>
+	 <%= statistic[field][0] %> <%= statistic[field][1] %>
+  </div>
+<% } %>
